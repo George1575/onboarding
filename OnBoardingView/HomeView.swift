@@ -15,6 +15,9 @@ struct HomeView: View {
     @AppStorage("subject") var currentUserInterestedSubject: String?
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
     
+  //  @AppStorage var subject: Subject
+  //  @Binding var activeView: ActiveView
+    
     var body: some View {
         ZStack{
             
@@ -34,6 +37,9 @@ struct HomeView: View {
             Text("Showing you results for \(currentUserInterestedEducation ?? "Unknown") \(currentUserInterestedSubject ?? "Unknown")")
                 .font(.headline)
             
+           // Text(subject.details)
+             //   .padding()
+            
             Spacer()
             
             Text("Sign Out")
@@ -41,8 +47,7 @@ struct HomeView: View {
                     signOut()
                 }
         }
-    }
-        
+    }        
 }
     
     func signOut() {
@@ -57,6 +62,3 @@ struct HomeView: View {
     
 }
 
-#Preview {
-    HomeView()
-}

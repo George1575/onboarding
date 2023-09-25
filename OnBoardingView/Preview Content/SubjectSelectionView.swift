@@ -4,6 +4,8 @@
 //
 //  Created by George Hargreaves on 24/09/2023.
 //
+/*
+ 
 
 import SwiftUI
 import Foundation
@@ -15,23 +17,20 @@ struct SubjectSelectionView: View {
     @State private var subjects: [Subject] = []
     
     var filteredSubjects: [Subject] {
-        subjects.filter { $0.name.lowercased().contains(searchText.lowercased()) || searchText.isEmpty }
+        subjects.filter { $0.name.lowercased().contains(interestedSubject.lowercased()) || interestedSubject.isEmpty }
     }
     
     var body: some View {
             Group {
-                switch activeView {
-                case .list:
                     VStack {
                         Spacer()
-                        TextField("Search...", text: $searchText)
+                        TextField("Search...", text: $interestedSubject)
                             .padding(10)
                             .background(Color(.systemGray6))
                             .cornerRadius(8)
                             .padding(.horizontal)
                         Spacer()
                         
-                        // Conditionally render List when searchText is not empty
                         if !searchText.isEmpty {
                             List(filteredSubjects) { subject in
                                 Button(action: {
@@ -44,9 +43,6 @@ struct SubjectSelectionView: View {
                             .onAppear(perform: loadSubjects)
                         }
                     }
-            case .detail:
-                if let subject = selectedSubject {
-                    SubjectDetailView(subject: subject, activeView: $activeView)
                 }
             }
         }
@@ -101,3 +97,4 @@ struct MyApp: App {
         }
     }
 }
+ */

@@ -25,6 +25,12 @@ struct OnboardingView: View {
     @State var interestedEducation: String = ""
     @State var interestedSubject: String = ""
     
+    @State private var selectedSubject: Subject?
+    @State private var subjects: [Subject] = []
+    
+    var filteredSubjects: [Subject] {
+        subjects.filter { $0.name.lowercased().contains(interestedSubject.lowercased()) || interestedSubject.isEmpty }
+    }
     
     //alers
     @State var alertTitle: String = ""
@@ -131,15 +137,15 @@ extension OnboardingView {
                     .tag("Tlevel")
                 Text("Apprenticship")
                     .tag("Apprenticship")
-        
+                
             }
-            .pickerStyle(MenuPickerStyle())
-            .font(.headline)
-            .foregroundColor(.white)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(10)
+                    .pickerStyle(MenuPickerStyle())
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .cornerRadius(10)
             
             Spacer()
             Spacer()
@@ -167,87 +173,99 @@ extension OnboardingView {
                     .tag("Tlevel")
                 Text("Apprenticship")
                     .tag("Apprenticship")
-        
+                
             }
-            .pickerStyle(MenuPickerStyle())
-            .font(.headline)
-            .foregroundColor(.white)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(10)
+                    .pickerStyle(MenuPickerStyle())
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .cornerRadius(10)
             
             Spacer()
             Spacer()
             Spacer()
-
+            
         }
         .padding()
     }
     
     private var interestedSubjectSection: some View{
-        VStack(spacing: 40) {
-            Spacer()
-            Text("What subjects are you interested in?")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .foregroundColor(.black)
-            
-            Picker(selection: $interestedSubject,
-                   label:
-                    Text("select a subject")){
-                Text("Maths")
-                    .tag("Maths")
-                Text("Economics")
-                    .tag("Economics")
-                Text("English")
-                    .tag("English")
-                Text("Biology")
-                    .tag("Biology")
         
+        Group {
+            VStack {
+                Spacer()
+                Text("Which subject would you like to know more about?")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                    .padding()
+                
+                Spacer()
+                Spacer()
+                
+                TextField("Search...", text: $interestedSubject)
+                    .padding(10)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                if !interestedSubject.isEmpty {
+                    List(filteredSubjects) { subject in
+                        Button(action: {
+                            selectedSubject = subject
+                        }) {
+                            Text(subject.name)
+                                .foregroundColor(.black)
+                            
+                        }
+                        
+                    }
+                    .onAppear(perform: loadSubjects)
+                    Spacer()
+                }
             }
-            .pickerStyle(MenuPickerStyle())
-            .font(.headline)
-            .foregroundColor(.white)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(10)
-            
-            Spacer()
-            Spacer()
-            Spacer()
-
         }
-        .padding()
     }
-    
+    func loadSubjects() {
+        
+        
+        if let url = Bundle.main.url(forResource: "subjects", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                subjects = try JSONDecoder().decode([Subject].self, from: data)
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
+        } else {
+            print("Cannot find subjects.json")
+        }
+    }
 }
 
 //MARK: Functions
 extension OnboardingView {
     
     func handleNextButtonPressed(){
-/*
- 
-
-        //check the user has entered data
+        
         switch onboardingState {
-        case 1:
-            guard currentEducation.count >= 3 else {
-                showAlert(title: "your name must be at least 3 characters long")
-                return
-
-            }
-        case 3:
-            guard interestedEducation.count > 1 else {
-                showAlert(title: "please select a subject before moving on ")
+            case 3:
+            guard interestedSubject.count >= 3 else {
+                    showAlert(title: "Please enter a valid subject")
                 return
             }
         default:
             break
         }
- */
+        
         //go to next section
         if onboardingState == 3 {
             //sign in
@@ -258,10 +276,7 @@ extension OnboardingView {
             withAnimation(.spring()) {
                 onboardingState += 1
             }
-            
         }
-        
-        
     }
     
     func signIn(){
@@ -278,4 +293,13 @@ extension OnboardingView {
         alertTitle = title
         showAlert.toggle()
     }
+}
+struct Subject: Identifiable, Decodable {
+    let id = UUID()
+    let name: String
+    let details: String
+}
+
+enum ActiveView {
+    case list, detail
 }
