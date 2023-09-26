@@ -221,8 +221,7 @@ extension OnboardingView {
                 if !interestedSubject.isEmpty {
                     List(filteredSubjects) { subject in
                         Button(action: {
-                            selectedSubject = subject
-                        }) {
+                            
                             Text(subject.name)
                                 .foregroundColor(.black)
                             
