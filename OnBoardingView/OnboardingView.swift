@@ -25,8 +25,8 @@ struct OnboardingView: View {
     @State var interestedEducation: String = ""
     @State var interestedSubject: String = ""
     
-    @State private var selectedSubject: Subject?
-    @State private var subjects: [Subject] = []
+    @State var selectedSubject: Subject?
+    @State var subjects: [Subject] = []
     
     var filteredSubjects: [Subject] {
         subjects.filter { $0.name.lowercased().contains(interestedSubject.lowercased()) || interestedSubject.isEmpty }
@@ -173,6 +173,8 @@ extension OnboardingView {
                     .tag("Tlevel")
                 Text("Apprenticship")
                     .tag("Apprenticship")
+                Text("Undergraduate")
+                    .tag("Undergraduate")
                 
             }
                     .pickerStyle(MenuPickerStyle())
@@ -221,7 +223,8 @@ extension OnboardingView {
                 if !interestedSubject.isEmpty {
                     List(filteredSubjects) { subject in
                         Button(action: {
-                            
+                            interestedSubject = subject.name
+                        }) {
                             Text(subject.name)
                                 .foregroundColor(.black)
                             
@@ -256,9 +259,9 @@ extension OnboardingView {
     func handleNextButtonPressed(){
         
         switch onboardingState {
-            case 3:
-            guard interestedSubject.count >= 3 else {
-                    showAlert(title: "Please enter a valid subject")
+        case 3:
+            guard subjects.contains(where: { $0.name == interestedSubject }) else {
+                showAlert(title: "Please enter a valid subject")
                 return
             }
         default:
@@ -280,8 +283,8 @@ extension OnboardingView {
     
     func signIn(){
         currentUserEducation = currentEducation
-        currentUserInterestedEducation = interestedSubject
-        currentUserInterestedSubject = interestedEducation
+        currentUserInterestedSubject = interestedSubject
+        currentUserInterestedEducation = interestedEducation
         withAnimation(.spring()){
             currentUserSignedIn = true
             
@@ -297,8 +300,11 @@ struct Subject: Identifiable, Decodable {
     let id = UUID()
     let name: String
     let details: String
+    
 }
 
 enum ActiveView {
     case list, detail
 }
+
+
