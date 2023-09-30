@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct OnBoardingViewApp: App {
+    
+    let model = JSONdecoder()
+    
     var body: some Scene {
         WindowGroup {
             IntroView()
+                .environmentObject(model)
         }
     }
 }

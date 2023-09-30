@@ -15,7 +15,6 @@
 		B30C79D52AC0724F0042B899 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C79D42AC0724F0042B899 /* OnboardingView.swift */; };
 		B30C79D72AC0893C0042B899 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C79D62AC0893C0042B899 /* HomeView.swift */; };
 		B3E8C74D2AC16BB3003251CF /* subjects.json in Resources */ = {isa = PBXBuildFile; fileRef = B3E8C74B2AC16BB3003251CF /* subjects.json */; };
-		B3E8C74E2AC16BB3003251CF /* SubjectSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E8C74C2AC16BB3003251CF /* SubjectSelectionView.swift */; };
 		B3E8C7502AC172BA003251CF /* JSONdecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E8C74F2AC172BA003251CF /* JSONdecoder.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +28,6 @@
 		B30C79D42AC0724F0042B899 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B30C79D62AC0893C0042B899 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B3E8C74B2AC16BB3003251CF /* subjects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = subjects.json; sourceTree = "<group>"; };
-		B3E8C74C2AC16BB3003251CF /* SubjectSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectSelectionView.swift; sourceTree = "<group>"; };
 		B3E8C74F2AC172BA003251CF /* JSONdecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONdecoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				B3E8C74B2AC16BB3003251CF /* subjects.json */,
-				B3E8C74C2AC16BB3003251CF /* SubjectSelectionView.swift */,
 				B3E8C74F2AC172BA003251CF /* JSONdecoder.swift */,
 				B30C79CB2AC0707A0042B899 /* Preview Assets.xcassets */,
 			);
@@ -158,7 +155,6 @@
 			files = (
 				B30C79C72AC070770042B899 /* ContentView.swift in Sources */,
 				B30C79D52AC0724F0042B899 /* OnboardingView.swift in Sources */,
-				B3E8C74E2AC16BB3003251CF /* SubjectSelectionView.swift in Sources */,
 				B3E8C7502AC172BA003251CF /* JSONdecoder.swift in Sources */,
 				B30C79D72AC0893C0042B899 /* HomeView.swift in Sources */,
 				B30C79C52AC070770042B899 /* OnBoardingViewApp.swift in Sources */,

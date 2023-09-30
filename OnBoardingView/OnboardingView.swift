@@ -9,13 +9,6 @@ import SwiftUI
 import Foundation
 
 struct OnboardingView: View {
-    //onboarding states
-    /*
-     0 - welcome screen
-     1 - ability to add name
-     2- ability to add age
-     3- ability to add gender
-     */
     
     @State var onboardingState: Int = 0
     let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
@@ -24,9 +17,6 @@ struct OnboardingView: View {
     @State var currentEducation: String = ""
     @State var interestedEducation: String = ""
     @State var interestedSubject: String = ""
-    
-    @State var selectedSubject: Subject?
-    @State var subjects: [Subject] = []
     
     var filteredSubjects: [Subject] {
         subjects.filter { $0.name.lowercased().contains(interestedSubject.lowercased()) || interestedSubject.isEmpty }
@@ -41,7 +31,11 @@ struct OnboardingView: View {
     @AppStorage("interestedEducation") var currentUserInterestedEducation: String?
     @AppStorage("subject") var currentUserInterestedSubject: String?
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
+    @AppStorage("subject_info") var getSubjectInfo: String?
     
+    //dataService
+    @State var subjects: [Subject] = []
+    var dataService = JSONdecoder()
     
     var body: some View {
         ZStack{
@@ -127,8 +121,7 @@ extension OnboardingView {
                 .foregroundColor(.black)
             //currentEducation.count > 1 ? currentEducation:
             Picker(selection: $currentEducation,
-                   label:
-                    Text("select a level")){
+                   label: Text("select a level")){
                 Text("GCSE")
                     .tag("GCSE")
                 Text("Alevel")
@@ -139,13 +132,13 @@ extension OnboardingView {
                     .tag("Apprenticship")
                 
             }
-                    .pickerStyle(MenuPickerStyle())
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(10)
+                   .pickerStyle(MenuPickerStyle())
+                   .font(.headline)
+                   .foregroundColor(.white)
+                   .frame(height: 55)
+                   .frame(maxWidth: .infinity)
+                   .background(Color.white)
+                   .cornerRadius(10)
             
             Spacer()
             Spacer()
@@ -163,8 +156,7 @@ extension OnboardingView {
                 .fontWeight(.semibold)
                 .foregroundColor(.black)
             Picker(selection: $interestedEducation,
-                   label:
-                    Text("select a level")){
+                   label: Text("select a level")){
                 Text("GCSE")
                     .tag("GCSE")
                 Text("Alevel")
@@ -177,13 +169,13 @@ extension OnboardingView {
                     .tag("Undergraduate")
                 
             }
-                    .pickerStyle(MenuPickerStyle())
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(10)
+                   .pickerStyle(MenuPickerStyle())
+                   .font(.headline)
+                   .foregroundColor(.white)
+                   .frame(height: 55)
+                   .frame(maxWidth: .infinity)
+                   .background(Color.white)
+                   .cornerRadius(10)
             
             Spacer()
             Spacer()
@@ -227,31 +219,19 @@ extension OnboardingView {
                         }) {
                             Text(subject.name)
                                 .foregroundColor(.black)
-                            
                         }
-                        
                     }
-                    .onAppear(perform: loadSubjects)
+                    .onAppear {
+                        subjects = dataService.loadSubjects()
+                    }
                     Spacer()
                 }
+                
             }
-        }
-    }
-    func loadSubjects() {
-        
-        
-        if let url = Bundle.main.url(forResource: "subjects", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                subjects = try JSONDecoder().decode([Subject].self, from: data)
-            } catch {
-                print("Error decoding JSON: \(error)")
-            }
-        } else {
-            print("Cannot find subjects.json")
         }
     }
 }
+
 
 //MARK: Functions
 extension OnboardingView {
@@ -262,6 +242,11 @@ extension OnboardingView {
         case 3:
             guard subjects.contains(where: { $0.name == interestedSubject }) else {
                 showAlert(title: "Please enter a valid subject")
+                return
+            }
+        case 2:
+            guard interestedEducation.count > 1 else {
+                showAlert(title: "Please select a level of education")
                 return
             }
         default:
@@ -296,15 +281,10 @@ extension OnboardingView {
         showAlert.toggle()
     }
 }
+
 struct Subject: Identifiable, Decodable {
     let id = UUID()
     let name: String
     let details: String
-    
 }
-
-enum ActiveView {
-    case list, detail
-}
-
 
