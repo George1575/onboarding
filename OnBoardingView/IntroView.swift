@@ -18,7 +18,7 @@ struct IntroView: View {
             //background
             Color(.mint)
                 .ignoresSafeArea()
-            
+//            
             //if user is signed in
             //show homescreen
             //else 
@@ -34,6 +34,7 @@ struct IntroView: View {
                 OnboardingView()
             }
         }
+        
     }
 }
 

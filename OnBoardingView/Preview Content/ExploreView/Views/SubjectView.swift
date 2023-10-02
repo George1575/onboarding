@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct SubjectView: View {
+    
+    @State var subjects = [Subject]()
+    var dataService = JSONdecoder()
+    var level: Level
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+            ScrollView {
+                
+                VStack {
+                    
+                    ForEach(level.subjects) { subject in
+                        
+                        NavigationLink {
+                            DetailView(subject: subject)
+                        } label: {
+                            ExploreRow(subject: subject)
+                                .padding(.bottom, 50)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+            .padding()
+        }
     }
-}
-
-#Preview {
-    SubjectView()
-}

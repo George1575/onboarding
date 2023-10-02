@@ -23,8 +23,9 @@ struct HomeView: View {
     var body: some View {
         
         ZStack{
-            Color(.mint)
-                .ignoresSafeArea()
+            Color(.systemMint)
+//                .ignoresSafeArea()
+
             VStack{
                 Image(systemName: "house.fill")
                 

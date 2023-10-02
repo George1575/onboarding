@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct ExploreRow: View {
+   
+    var subject: Subject
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack{
+            
+            Image(subject.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 120)
+                .cornerRadius(15)
+            
+            Text(subject.name)
+                .bold()
+                .font(.largeTitle)
+                
+            
+            Text(subject.details)
+                .multilineTextAlignment(.leading)
+            
+            
+        }
+        .padding(10)
     }
 }
 
-#Preview {
-    ExploreRow()
-}
+

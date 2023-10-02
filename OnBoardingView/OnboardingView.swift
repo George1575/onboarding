@@ -115,105 +115,128 @@ extension OnboardingView {
     }
     
     private var currentEducationSection: some View {
-        VStack(spacing: 40) {
-            
-            Text("Which level of education are you currently in?")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .foregroundColor(.black)
-                .padding()
-
-            Button(action: {
-                isEducationPickerActive.toggle()
-            }) {
-                Text(currentEducation.isEmpty ? "Select a level" : currentEducation)
-                    .font(.headline)
-                    .foregroundColor(.black)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding()
-
-            }
-            .actionSheet(isPresented: $isEducationPickerActive) {
-                ActionSheet(title: Text("Select a Level"), buttons: [
-                    .default(Text("GCSE")) { currentEducation = "GCSE" },
-                    .default(Text("Alevel")) { currentEducation = "Alevel" },
-                    .default(Text("Tlevel")) { currentEducation = "Tlevel" },
-                    .default(Text("Apprenticship")) { currentEducation = "Apprenticship" },
-                    .cancel()
-                    
-                ])
-                
-            }
-        }
-        .padding()
-    }
-    private var interestedEducationSection: some View {
-        VStack(spacing: 40) {
-
-            Text("Which level of education are you interested in?")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .foregroundColor(.black)
-                .padding()
-
-            Button(action: {
-                isInterestedPickerActive.toggle()
-            }) {
-                Text(interestedEducation.isEmpty ? "Select a level" : interestedEducation)
-                    .font(.headline)
-                    .foregroundColor(.black)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding()
-
-            }
-            .actionSheet(isPresented: $isInterestedPickerActive) {
-                ActionSheet(title: Text("Select a Level"), buttons: [
-                    .default(Text("GCSE")) { interestedEducation = "GCSE" },
-                    .default(Text("Alevel")) { interestedEducation = "Alevel" },
-                    .default(Text("Tlevel")) { interestedEducation = "Tlevel" },
-                    .default(Text("Apprenticship")) { interestedEducation = "Apprenticship" },
-                    .default(Text("Undergraduate")) { interestedEducation = "Undergraduate" },
-                    .cancel()
-
-                ])
-            }
-        }
-        .padding()
-    }
-    
-    private var interestedSubjectSection: some View{
         
-        Group {
-            VStack {
-                Text("Which subject would you like to know more about?")
+        
+        ZStack{
+            
+            Color(.blue)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 40) {
+                
+                Text("Which level of education are you currently in?")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
                     .padding()
-                
-                TextField("Search...", text: $interestedSubject)
-                    .padding(10)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .padding(.horizontal)
-                
-                if !interestedSubject.isEmpty {
-                    List(filteredSubjects) { subject in
-                        Button(action: {
-                            interestedSubject = subject.name
-                        }) {
-                            Text(subject.name)
-                                .foregroundColor(.black)
+
+                Button(action: {
+                    isEducationPickerActive.toggle()
+                }) {
+                    Text(currentEducation.isEmpty ? "Select a level" : currentEducation)
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .padding()
+
+                }
+                .actionSheet(isPresented: $isEducationPickerActive) {
+                    ActionSheet(title: Text("Select a Level"), buttons: [
+                        .default(Text("GCSE")) { currentEducation = "GCSE" },
+                        .default(Text("Alevel")) { currentEducation = "Alevel" },
+                        .default(Text("Tlevel")) { currentEducation = "Tlevel" },
+                        .default(Text("Apprenticship")) { currentEducation = "Apprenticship" },
+                        .cancel()
+                        
+                    ])
+                    
+                }
+            }
+            .padding()
+        }
+    }
+    
+    private var interestedEducationSection: some View {
+        
+        
+        ZStack{
+            
+            Color(.blue)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 40) {
+
+                Text("Which level of education are you interested in?")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                    .padding()
+
+                Button(action: {
+                    isInterestedPickerActive.toggle()
+                }) {
+                    Text(interestedEducation.isEmpty ? "Select a level" : interestedEducation)
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .padding()
+
+                }
+                .actionSheet(isPresented: $isInterestedPickerActive) {
+                    ActionSheet(title: Text("Select a Level"), buttons: [
+                        .default(Text("GCSE")) { interestedEducation = "GCSE" },
+                        .default(Text("Alevel")) { interestedEducation = "Alevel" },
+                        .default(Text("Tlevel")) { interestedEducation = "Tlevel" },
+                        .default(Text("Apprenticship")) { interestedEducation = "Apprenticship" },
+                        .default(Text("Undergraduate")) { interestedEducation = "Undergraduate" },
+                        .cancel()
+
+                    ])
+                }
+            }
+            .padding()
+        }
+    }
+    
+    private var interestedSubjectSection: some View{
+        
+        ZStack{
+            
+            Color(.blue)
+                .ignoresSafeArea()
+            
+            Group {
+                VStack {
+                    Text("Which subject would you like to know more about?")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                        .padding()
+                    
+                    TextField("Search...", text: $interestedSubject)
+                        .padding(10)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                    
+                    if !interestedSubject.isEmpty {
+                        List(filteredSubjects) { subject in
+                            Button(action: {
+                                interestedSubject = subject.name
+                            }) {
+                                Text(subject.name)
+                                    .foregroundColor(.black)
+                            }
                         }
-                    }
-                    .onAppear {
-                        subjects = dataService.loadSubjects()
+                        .onAppear {
+                            subjects = dataService.loadSubjects()
+                        }
                     }
                 }
             }

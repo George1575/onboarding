@@ -12,10 +12,8 @@ struct MainTabView: View {
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
 
     var body: some View {
-        
-        
 
-        TabView{
+        TabView {
             
             HomeView()
                 .tabItem{
@@ -23,28 +21,24 @@ struct MainTabView: View {
                         Image(systemName: "menucard")
                         Text("Home")
                     }
-                    .onAppear() {
-                        UITableView.appearance().backgroundColor = .yellow
-                    }
                 }
-            
+                .foregroundColor(.black)
+                .background(.mint.opacity(0.8))
+                
+                            
             ExploreView()
                 .tabItem{
                     VStack{
                         Image(systemName: "info.circle")
                         Text("Explore")
+                            
                     }
                 }
-                .onAppear() {
-                    UITableView.appearance().backgroundColor = .yellow
-                }
-                .tint(.blue)
+                .background(.mint.opacity(0.8))
         }
-        .onAppear() {
-            UITableView.appearance().backgroundColor = .yellow
+        .accentColor(.black)
         }
     }
-}
 
 #Preview {
     MainTabView()

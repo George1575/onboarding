@@ -10,5 +10,56 @@
     {"name": "Computer Science", "details": "Computer Science is the study of computers and computational systems. It involves understanding the theory of computation, algorithms, and the design of computer systems.", "imageName": "computerScience.png"},
     {"name": "Ecology", "details": "Ecology is the scientific study of interactions among organisms and their environment, such as the interactions organisms have with each other and with their abiotic environment.", "imageName": "ecology.png"},
     {"name": "Geology", "details": "Geology is the study of the Earth, the materials of which it is made, the structure of those materials, and the processes acting upon them.", "imageName": "geology.png"},
-    {"name": "Meteorology", "details": "Meteorology is the scientific study of the atmosphere that focuses on weather processes and forecasting.", "imageName": "meterology.png"}
+    {"name": "Meteorology", "details": "Meteorology is the scientific study of the atmosphere that focuses on weather processes and forecasting.", "imageName": "meterology.png"},
+    {
+        "educationLevels": [{
+                "name": "Alevels",
+                "id": 0,
+                "description": "Advanced Level Qualifications, typically taken in the final two years of secondary education. Subjects are chosen by students and exams are taken at the end of the two-year course.",
+                "duration": "2 years",
+                "entryRequirements": "Generally, at least five GCSEs at grades A* to C (9-4)",
+                "subjects": ["Biology", "Mathematics", "English Literature", "History", "Chemistry", "Physics", "Economics"],
+                "imageName":"alevel"
+            },
+            {
+                "name": "Tlevels",
+                "id": 1,
+                "description": "Technical Levels are new courses, which follow GCSEs and are equivalent to 3 A levels. They provide a mix of classroom learning and 'on-the-job' experience.",
+                "duration": "2 years",
+                "entryRequirements": "Depends on the institution, often requires relevant GCSEs",
+                "subjects": ["Digital Production", "Health", "Healthcare Science", "Science"],
+                "imageName":"tlevel"
+            },
+            {
+                "name": "Apprenticeships",
+                "id": 2,
+                "description": "A combination of on-the-job training and classroom learning, leading to a nationally recognised qualification. Apprentices are employed and earn a wage while learning skills.",
+                "duration": "Varies, typically between 1 to 5 years",
+                "entryRequirements": "Varies by sector and job role, but often some relevant GCSEs or equivalent are required",
+                "subjects": ["Accountancy", "Engineering", "Health and Care", "IT", "Construction"],
+                "imageName":"apprenticeships"
+            },
+            {
+                "name": "BTEC",
+                "id": 2,
+                "description": "Vocational qualifications that provide specialist, work-related learning. They can be taken alongside or in place of A-levels or at further education colleges.",
+                "duration": "1-2 years",
+                "entryRequirements": "Varies, but often requires 4-5 GCSEs at grades A* to C (9-4)",
+                "subjects": ["Applied Science", "Business", "Art", "Engineering", "Health and Social Care"],
+                "imageName":"btec"
+            },
+            {
+                "name": "Foundation Degrees",
+                "id": 3,
+                "description": "Higher education qualifications that combine academic study with workplace learning. They are equivalent to two-thirds of a bachelor's degree.",
+                "duration": "2 years full-time",
+                "entryRequirements": "Varies, but often requires Alevels, BTEC or relevant work experience",
+                "subjects": ["Biology", "Business", "Engineering", "Education and Training", "Anthropology", "Marketing", "Maths"],
+                "imageName":"foundational"
+
+            }
+        ]
+    }
+
+    
 ]
