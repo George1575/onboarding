@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct MainTabView: View {
     
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
 
@@ -15,11 +15,37 @@ struct TabView: View {
         
         
 
-        Text("")
-
+        TabView{
+            
+            HomeView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: "menucard")
+                        Text("Home")
+                    }
+                    .onAppear() {
+                        UITableView.appearance().backgroundColor = .yellow
+                    }
+                }
+            
+            ExploreView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: "info.circle")
+                        Text("Explore")
+                    }
+                }
+                .onAppear() {
+                    UITableView.appearance().backgroundColor = .yellow
+                }
+                .tint(.blue)
+        }
+        .onAppear() {
+            UITableView.appearance().backgroundColor = .yellow
+        }
     }
 }
 
 #Preview {
-    TabView()
+    MainTabView()
 }
