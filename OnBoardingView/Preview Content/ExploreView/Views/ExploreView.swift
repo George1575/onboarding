@@ -39,11 +39,11 @@ struct ExploreView: View {
             .padding()
         }
         .ignoresSafeArea()
-        .onAppear {
-            levels = dataService.loadSubjects()
+//        .onAppear {
+//            levels = dataService.loadSubjects()
         }
     }
-}
+
 
 #Preview {
     ExploreView()
