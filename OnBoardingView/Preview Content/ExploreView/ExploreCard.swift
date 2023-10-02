@@ -47,4 +47,8 @@ struct ExploreCard: View {
         }
 }
 
-
+struct SubjectCard_Previews: PreviewProvider {
+    static var previews: some View {
+        ExploreCard(level: Level(name: "Apprenticeships", summary: "Truro and Penwith College offers quality apprenticeship programmes in 30 exciting job roles in partnership with Cornwall's top employers. Our continually expanding range of training is designed in partnership with employers to address the skills needed and career routes available at local businesses.", imageName: "apprenticeships", subjects: [Subject]()))
+    }
+}

@@ -42,5 +42,6 @@ class JSONdecoder: ObservableObject {
         }
         return [Subject]()
     }
+    
 }
 

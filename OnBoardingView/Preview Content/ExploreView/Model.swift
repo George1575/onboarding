@@ -26,3 +26,32 @@ struct Subject: Identifiable, Decodable {
     var imageName: String
 }
 
+struct level: Decodable, Identifiable {
+    
+    var id: Int
+    var image: String
+    var summary: String
+    var description: String
+    
+}
+
+struct student {
+    
+    var currentLevel: String
+    var futureLevel: String
+    var subject: String
+
+}
+
+struct SubjectSearch: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
+struct LevelChoice {
+    
+    var name: [String]
+    let id: Int
+    var information: String
+    
+}
